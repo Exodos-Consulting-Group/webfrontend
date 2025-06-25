@@ -23,12 +23,25 @@ This website is optimized for:
 
 ## Getting Started
 
-### Prerequisites
+### Docker (Recommended)
 
-- Node.js 18+ 
-- npm or yarn
+The fastest way to get started is using Docker:
 
-### Installation
+```bash
+# Build and run production container
+docker build -t webfrontend .
+docker run -p 3000:3000 webfrontend
+
+# Or use Docker Compose
+docker-compose up
+
+# For development with hot reloading
+docker-compose --profile dev up webfrontend-dev
+```
+
+### Local Development (Alternative)
+
+If you prefer local development without Docker:
 
 ```bash
 # Install dependencies
@@ -47,7 +60,10 @@ npm start
 ### Development
 
 ```bash
-# Run development server
+# Run development server (Docker)
+docker-compose --profile dev up webfrontend-dev
+
+# Run development server (local)
 npm run dev
 
 # Type checking
@@ -55,6 +71,9 @@ npm run type-check
 
 # Linting
 npm run lint
+
+# Testing
+npm run test
 ```
 
 ## Project Structure

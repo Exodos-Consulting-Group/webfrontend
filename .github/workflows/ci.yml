@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: Docker-First CI Pipeline
 
 on:
   push:
@@ -7,94 +7,130 @@ on:
     branches: [main, develop]
 
 jobs:
-  lint-and-type-check:
-    name: Lint and Type Check
+  docker-build-and-test:
+    name: Docker Build & Quality Checks
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        
+      # Build Docker image with all quality checks built-in
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
         with:
-          node-version: '18'
-          cache: 'npm'
+          context: .
+          load: true
+          tags: webfrontend:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           
-      - name: Install dependencies
-        run: npm ci --prefer-offline --no-audit
+      # Test the Docker container functionality
+      - name: Test Docker container startup
+        run: |
+          docker run -d -p 3000:3000 --name test-container webfrontend:test
+          sleep 15
+          
+      - name: Health check container
+        run: |
+          curl -f http://localhost:3000 || exit 1
+          echo "✅ Container is responding correctly"
+          
+      - name: Check container logs
+        run: docker logs test-container
         
-      - name: Run ESLint
-        run: npm run lint
-        
-      - name: Run TypeScript type check
-        run: npm run type-check
+      - name: Run lint and type checks in container
+        run: |
+          docker exec test-container npm run lint
+          docker exec test-container npm run type-check
+          
+      - name: Cleanup test container
+        if: always()
+        run: |
+          docker stop test-container || true
+          docker rm test-container || true
 
-  build:
-    name: Build Application
+  docker-security-scan:
+    name: Docker Security & Vulnerability Scan
     runs-on: ubuntu-latest
-    needs: lint-and-type-check
+    needs: docker-build-and-test
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        
+      - name: Build Docker image for scanning
+        uses: docker/build-push-action@v5
         with:
-          node-version: '18'
-          cache: 'npm'
+          context: .
+          load: true
+          tags: webfrontend:scan
+          cache-from: type=gha
           
-      - name: Install dependencies
-        run: npm ci --prefer-offline --no-audit
-        
-      - name: Build application
-        run: npm run build
-        
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
         with:
-          name: build-files
-          path: .next/
-          retention-days: 1
+          image-ref: 'webfrontend:scan'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          
+      - name: Upload Trivy scan results
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
 
-  cross-browser-test:
-    name: Cross-Browser Compatibility Check
+  docker-cross-browser-test:
+    name: Cross-Browser Testing via Docker
     runs-on: ubuntu-latest
-    needs: build
+    needs: docker-build-and-test
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         
-      - name: Setup Node.js
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        
+      - name: Build application Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          load: true
+          tags: webfrontend:test-app
+          cache-from: type=gha
+          
+      - name: Start application container
+        run: |
+          docker run -d -p 3001:3000 --name app-container webfrontend:test-app
+          sleep 10
+          
+      - name: Setup Node.js for Playwright
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22'
           cache: 'npm'
           
-      - name: Install dependencies
+      - name: Install test dependencies
         run: npm ci --prefer-offline --no-audit
         
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
         
-      - name: Build application
-        run: npm run build
-        
-      - name: Start application
-        run: npm start &
-        env:
-          PORT: 3001
-        
       - name: Wait for application to be ready
         run: npx wait-on http://localhost:3001 --timeout 60000
         
-      - name: Run cross-browser tests
+      - name: Run cross-browser tests against Docker container
         run: npx playwright test
         env:
           PLAYWRIGHT_BASE_URL: http://localhost:3001
-        
+          
       - name: Upload test results
         uses: actions/upload-artifact@v4
         if: failure()
@@ -102,3 +138,9 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 7
+          
+      - name: Cleanup
+        if: always()
+        run: |
+          docker stop app-container || true
+          docker rm app-container || true
