@@ -16,7 +16,17 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         
-      - name: Build Docker image
+      - name: Build test Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          target: test
+          load: true
+          tags: webfrontend:pr-test-${{ github.event.number }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          
+      - name: Build production Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -44,13 +54,13 @@ jobs:
             exit 1
           fi
           
-      - name: Run quality checks in container
+      - name: Run quality checks in test container
         run: |
-          # Run linting inside the container
-          docker exec pr-test npm run lint
+          # Run linting using test image with dev dependencies
+          docker run --rm webfrontend:pr-test-${{ github.event.number }} npm run lint
           
-          # Run type checking inside the container
-          docker exec pr-test npm run type-check
+          # Run type checking using test image with dev dependencies
+          docker run --rm webfrontend:pr-test-${{ github.event.number }} npm run type-check
           
       - name: Check container resource usage
         run: |

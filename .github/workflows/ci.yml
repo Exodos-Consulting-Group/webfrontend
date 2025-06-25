@@ -18,20 +18,31 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         
-      # Build Docker image with all quality checks built-in
-      - name: Build Docker image
+      # Build Docker image for testing (with dev dependencies)
+      - name: Build test Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
+          target: test
           load: true
           tags: webfrontend:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
           
-      # Test the Docker container functionality
-      - name: Test Docker container startup
+      # Build production Docker image
+      - name: Build production Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          load: true
+          tags: webfrontend:prod
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          
+      # Test the production Docker container functionality
+      - name: Test production Docker container startup
         run: |
-          docker run -d -p 3000:3000 --name test-container webfrontend:test
+          docker run -d -p 3000:3000 --name test-container webfrontend:prod
           sleep 15
           
       - name: Health check container
@@ -42,10 +53,10 @@ jobs:
       - name: Check container logs
         run: docker logs test-container
         
-      - name: Run lint and type checks in container
+      - name: Run lint and type checks in test container
         run: |
-          docker exec test-container npm run lint
-          docker exec test-container npm run type-check
+          docker run --rm webfrontend:test npm run lint
+          docker run --rm webfrontend:test npm run type-check
           
       - name: Cleanup test container
         if: always()

@@ -21,6 +21,11 @@ COPY . .
 # of the application in the .next/standalone directory.
 RUN npm run build
 
+# Test stage with dev dependencies for CI/CD
+FROM builder AS test
+WORKDIR /app
+# This stage has all dependencies and source code for testing
+
 # Production image contains only the "standalone" build.
 FROM base AS runner
 WORKDIR /app
