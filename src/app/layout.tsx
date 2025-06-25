@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 
@@ -7,7 +7,6 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Exodos - Public Website',
   description: 'Exodos public facing website',
-  viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
   authors: [{ name: 'Exodos Team' }],
   keywords: ['exodos', 'website'],
@@ -24,12 +23,17 @@ export const metadata: Metadata = {
   },
   // PWA and mobile optimization
   manifest: '/manifest.json',
-  themeColor: '#000000',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
     title: 'Exodos',
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#000000',
 }
 
 export default function RootLayout({
