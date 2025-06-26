@@ -1,6 +1,5 @@
 # Pin the Node.js version for all stages.
-FROM node:22-slim AS base
-
+FROM node:24-slim
 # A handy trick for better cache utilization:
 # Install dependencies only when package.json
 # or package-lock.json has changed.
