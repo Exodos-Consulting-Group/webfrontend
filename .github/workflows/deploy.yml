@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: exodosconsulting/webfrontend
+  IMAGE_NAME: andrewpark93/exodos-frontend
 
 jobs:
   docker-build-production:
