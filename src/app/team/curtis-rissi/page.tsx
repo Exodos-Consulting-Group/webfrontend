@@ -117,7 +117,7 @@ export default function CurtisRissiPage() {
                   <div className="border-l-4 border-blue-500 pl-4">
                     <h4 className="font-medium text-gray-900">Enterprise Cloud Migration</h4>
                     <p className="text-sm text-gray-600 mt-1">
-                      Led a Fortune 500 company's complete migration from on-premises infrastructure to AWS, 
+                      Led a Fortune 500 company&apos;s complete migration from on-premises infrastructure to AWS, 
                       reducing operational costs by 40% and improving system reliability.
                     </p>
                   </div>
@@ -143,7 +143,7 @@ export default function CurtisRissiPage() {
 
         {/* Other Team Members */}
         <div className="mt-12">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Other Team Members</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Other Leadership Team Members</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Link href="/team/young-jeong" className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
               <div className="flex items-center">

@@ -14,7 +14,7 @@ export default function ContactPage() {
             Contact Us
           </h1>
           <p className="mt-4 text-xl text-gray-600">
-            Ready to start your project? We'd love to hear from you.
+            Ready to start your project? We&apos;d love to hear from you.
           </p>
         </div>
 

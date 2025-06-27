@@ -149,10 +149,10 @@ export default function YoungJeongPage() {
 
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Technical Philosophy</h3>
                 <blockquote className="border-l-4 border-gray-300 pl-4 italic text-gray-600">
-                  "Technology should enable business outcomes, not create barriers. I believe in building 
+                  &quot;Technology should enable business outcomes, not create barriers. I believe in building 
                   resilient, scalable systems that grow with the business while maintaining simplicity and 
-                  operational excellence. The best architecture is one that solves today's problems while 
-                  preparing for tomorrow's opportunities."
+                  operational excellence. The best architecture is one that solves today&apos;s problems while 
+                  preparing for tomorrow&apos;s opportunities.&quot;
                 </blockquote>
               </div>
             </div>
@@ -161,7 +161,7 @@ export default function YoungJeongPage() {
 
         {/* Other Team Members */}
         <div className="mt-12">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Other Team Members</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Other Leadership Team Members</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Link href="/team/curtis-rissi" className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
               <div className="flex items-center">

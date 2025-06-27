@@ -169,7 +169,7 @@ export default function CloudMigrationPage() {
         <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-8 text-center text-white">
           <h2 className="text-2xl font-semibold mb-4">Ready to Modernize Your Infrastructure?</h2>
           <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-            Let's discuss your cloud migration strategy and explore alternatives that reduce costs while improving performance.
+            Let&apos;s discuss your cloud migration strategy and explore alternatives that reduce costs while improving performance.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact" className="bg-white text-blue-600 px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors font-medium">

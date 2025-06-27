@@ -16,7 +16,7 @@ export default function TeamPage() {
             Meet Our Team
           </h1>
           <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
-            We're a diverse group of passionate professionals dedicated to creating 
+            We&apos;re a diverse group of passionate professionals dedicated to creating 
             exceptional digital experiences. Get to know the people behind Exodos.
           </p>
         </div>
@@ -30,7 +30,7 @@ export default function TeamPage() {
             Want to Join Our Team?
           </h2>
           <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
-            We're always looking for talented individuals who share our passion for creating 
+            We&apos;re always looking for talented individuals who share our passion for creating 
             exceptional digital experiences. Check out our open positions or get in touch.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

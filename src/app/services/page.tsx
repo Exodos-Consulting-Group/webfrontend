@@ -85,7 +85,7 @@ export default function ServicesPage() {
               Ready to Get Started?
             </h2>
             <p className="text-gray-700 mb-6">
-              Let's discuss how we can help bring your vision to life with our expertise and dedication.
+              Let&apos;s discuss how we can help bring your vision to life with our expertise and dedication.
             </p>
             <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
               Contact Us Today

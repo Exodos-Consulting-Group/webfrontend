@@ -146,7 +146,7 @@ export default function WebDevelopmentPage() {
         <div className="bg-blue-600 rounded-lg p-8 text-center text-white">
           <h2 className="text-2xl font-semibold mb-4">Ready to Start Your Web Development Project?</h2>
           <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-            Let's discuss your requirements and create a custom solution that drives your business forward.
+            Let&apos;s discuss your requirements and create a custom solution that drives your business forward.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact" className="bg-white text-blue-600 px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors font-medium">
