@@ -10,13 +10,19 @@ services:
     environment:
       - NODE_ENV=production
       - NEXT_TELEMETRY_DISABLED=1
+      - DATABASE_URL=postgresql://exodos_user:admin@postgres:5432/exodos_db
     restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
+    networks:
+      - app-network
 
   # Optional: Add a development service
   webfrontend-dev:
@@ -32,5 +38,44 @@ services:
       - /app/.next
     environment:
       - NODE_ENV=development
+      - DATABASE_URL=postgresql://exodos_user:admin@postgres:5432/exodos_db
+    depends_on:
+      postgres:
+        condition: service_healthy
     profiles:
       - dev
+    networks:
+      - app-network
+  
+  # PostgreSQL Database
+  postgres:
+    image: postgres:17-alpine
+    container_name: exodos-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: exodos_db
+      POSTGRES_USER: exodos_user
+      POSTGRES_PASSWORD: admin
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U exodos_user -d exodos_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
+      

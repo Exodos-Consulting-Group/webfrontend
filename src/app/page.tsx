@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import ContactForm from '@/components/ContactForm'
 
 // Key team members to feature on home page
 const featuredTeam = [
@@ -240,6 +241,24 @@ export default function Home() {
                 Lightning-fast loading times and seamless user experiences
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-16 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
+              Get In Touch
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Ready to start your next project? Contact us and let's discuss how we can help bring your vision to life.
+            </p>
+          </div>
+          
+          <div className="flex justify-center">
+            <ContactForm />
           </div>
         </div>
       </section>
