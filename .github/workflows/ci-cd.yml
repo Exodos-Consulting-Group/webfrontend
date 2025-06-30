@@ -6,6 +6,13 @@ on:
   pull_request:
     branches: [main]
 
+# Add global permissions for the workflow
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+  id-token: write
+
 env:
   REGISTRY: docker.io
   IMAGE_NAME: andrewpark93/exodos-frontend
@@ -99,10 +106,6 @@ jobs:
     needs: build
     if: github.event_name != 'pull_request'
     
-    permissions:
-      contents: read
-      security-events: write
-    
     steps:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -110,28 +113,59 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           
-      - name: Run Trivy vulnerability scanner
+      - name: Run Trivy vulnerability scanner (Critical/High - Blocking)
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: '${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest'
+          format: 'table'
+          severity: 'CRITICAL,HIGH'
+          exit-code: '1'  # Fail the job if critical/high vulnerabilities found
+          
+      - name: Run Trivy vulnerability scanner (Full Report)
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: '${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest'
           format: 'sarif'
           output: 'trivy-results.sarif'
-          severity: 'CRITICAL,HIGH'
-          exit-code: '1'  # Fail the job if critical/high vulnerabilities found
+          severity: 'CRITICAL,HIGH,MEDIUM,LOW'
+          exit-code: '0'  # Don't fail on this comprehensive scan
           
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
+      - name: Display security scan summary
         if: always()
+        run: |
+          echo "🔍 Security Scan Summary"
+          echo "========================"
+          echo "Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
+          echo ""
+          if [ -f "trivy-results.sarif" ]; then
+            echo "✅ Security scan completed successfully"
+            echo "📄 Full results saved as artifact"
+          else
+            echo "⚠️ Security scan had issues"
+          fi
+          
+      - name: Try uploading to GitHub Security (if available)
+        uses: github/codeql-action/upload-sarif@v3
+        if: always() && hashFiles('trivy-results.sarif') != ''
         with:
           sarif_file: 'trivy-results.sarif'
+        continue-on-error: true  # Don't fail if GitHub Advanced Security isn't available
           
-      - name: Upload security scan artifact
+      - name: Upload security scan results as artifact
         uses: actions/upload-artifact@v4
-        if: always()
+        if: always() && hashFiles('trivy-results.sarif') != ''
         with:
           name: security-scan-results
           path: trivy-results.sarif
           retention-days: 30
+          
+      - name: Security scan status
+        if: always()
+        run: |
+          echo "🛡️ Security scanning completed"
+          echo "- Critical/High vulnerabilities: Blocking (fails pipeline)"
+          echo "- Medium/Low vulnerabilities: Informational only"
+          echo "- Full scan results available in artifacts"
 
   # Step 4: Integration test the pushed image
   integration-test:
