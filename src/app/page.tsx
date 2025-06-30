@@ -253,7 +253,7 @@ export default function Home() {
               Get In Touch
             </h2>
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Ready to start your next project? Contact us and let's discuss how we can help bring your vision to life.
+              Ready to start your next project? Contact us and let&apos;s discuss how we can help bring your vision to life.
             </p>
           </div>
           
