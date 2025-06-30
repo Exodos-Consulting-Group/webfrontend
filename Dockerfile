@@ -1,5 +1,5 @@
 # Pin the Node.js version for all stages.
-FROM lts-alpine3.21 AS base
+FROM node:24.3.0-alpine3.22 AS base
 
 # A handy trick for better cache utilization:
 # Install dependencies only when package.json
