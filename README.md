@@ -1,124 +1,63 @@
 # Exodos Web Frontend
 
-Private repo that contains all assets related to Exodos public facing website built with Next.js and TypeScript.
+Internal repo for the Exodos website - Next.js 15 + TypeScript + PostgreSQL
 
-## Features
-
-- **Next.js 15** with App Router
-- **TypeScript** for type safety
-- **Tailwind CSS** for styling
-- **Cross-browser compatibility** (Chrome, Firefox, Safari, Edge)
-- **Mobile-responsive design** with touch-friendly interactions
-- **Progressive Web App (PWA)** capabilities
-- **SEO optimized** with proper meta tags
-- **Accessibility compliant** with WCAG guidelines
-
-## Cross-Platform Support
-
-This website is optimized for:
-- **Desktop browsers**: Chrome, Firefox, Safari, Edge
-- **Mobile devices**: iOS Safari, Chrome Mobile, Samsung Internet
-- **Tablets**: iPad, Android tablets
-- **Touch devices**: Full touch gesture support
-
-## Getting Started
-
-### Docker (Recommended)
-
-The fastest way to get started is using Docker:
+## Quick Start
 
 ```bash
-# Build and run production container
-docker build -t webfrontend .
-docker run -p 3000:3000 webfrontend
+# Development (recommended)
+docker-compose --profile dev up webfrontend-dev
 
-# Or use Docker Compose
+# Production
 docker-compose up
 
-# For development with hot reloading
-docker-compose --profile dev up webfrontend-dev
+# Local development
+npm install && npm run dev
 ```
 
-### Local Development (Alternative)
-
-If you prefer local development without Docker:
+## Scripts
 
 ```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
+npm run dev          # Development server
+npm run build        # Production build
+npm run lint         # ESLint
+npm run type-check   # TypeScript check
 ```
 
-### Development
-
-```bash
-# Run development server (Docker)
-docker-compose --profile dev up webfrontend-dev
-
-# Run development server (local)
-npm run dev
-
-# Type checking
-npm run type-check
-
-# Linting
-npm run lint
-
-# Testing
-npm run test
-```
-
-## Project Structure
+## Structure
 
 ```
 src/
-├── app/                 # Next.js App Router pages
-│   ├── globals.css     # Global styles
-│   ├── layout.tsx      # Root layout
-│   └── page.tsx        # Home page
-├── components/         # Reusable components
-│   ├── MobileNav.tsx   # Mobile navigation
-│   └── ResponsiveLayout.tsx
-├── lib/                # Utility functions
-│   └── utils.ts        # Helper utilities
-└── styles/             # Additional styles
+├── app/                    # Pages & API routes
+│   ├── about/             
+│   ├── blog/              
+│   ├── contact/           
+│   ├── services/          # Service pages
+│   ├── team/              # Team member pages
+│   └── api/contact/       # Contact form API
+├── components/            # React components
+└── lib/                   # Utils & DB connection
 ```
 
-## Mobile Optimization
+## Database
 
-- Responsive breakpoints: xs (475px), sm (640px), md (768px), lg (1024px), xl (1280px), 2xl (1536px)
-- Touch-friendly minimum tap targets (44px)
-- Mobile-first CSS approach
-- Optimized images with Next.js Image component
-- PWA manifest for app-like experience
+PostgreSQL runs in Docker with:
+- Database: `exodos_db`
+- User: `exodos_user`
+- Password: `admin`
+- Port: `5432`
 
-## Browser Support
+## Environment
 
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-- Mobile browsers with equivalent versions
+```bash
+DATABASE_URL=postgresql://exodos_user:admin@postgres:5432/exodos_db
+NODE_ENV=development|production
+```
 
-## Deployment
+## CI/CD
 
-The project is ready for deployment on:
-- Vercel (recommended for Next.js)
-- Netlify
-- AWS Amplify
-- Any static hosting service
-
-## Contributing
-
-1. Create a feature branch
-2. Make your changes
-3. Run tests and linting
-4. Submit a pull request 
+GitHub Actions runs on push to `main`/`develop`:
+- Lint & type check
+- Build test
+- Security scan
+- Docker build & push 
