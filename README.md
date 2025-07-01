@@ -1,9 +1,9 @@
 # Exodos Web Frontend
 
-[![Tests](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml/badge.svg?job=test)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
-[![Build](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml/badge.svg?job=build)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
-[![Security Scan](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml/badge.svg?job=security-scan)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
-[![Integration Test](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml/badge.svg?job=integration-test)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
+[![Test & Quality Checks](https://img.shields.io/github/actions/workflow/status/Exodos-Consulting-Group/webfrontend/ci-cd.yml?label=tests&logo=github)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
+[![Docker Build](https://img.shields.io/github/actions/workflow/status/Exodos-Consulting-Group/webfrontend/ci-cd.yml?label=build&logo=docker)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
+[![Security Scan](https://img.shields.io/github/actions/workflow/status/Exodos-Consulting-Group/webfrontend/ci-cd.yml?label=security&logo=shield)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
+[![Integration Test](https://img.shields.io/github/actions/workflow/status/Exodos-Consulting-Group/webfrontend/ci-cd.yml?label=integration&logo=checkmark)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
 [![License](https://img.shields.io/github/license/Exodos-Consulting-Group/webfrontend)](LICENSE)
 [![Next.js](https://img.shields.io/badge/next.js-15.3.4-black?logo=next.js)](package.json)
 [![Node.js Version](https://img.shields.io/badge/node.js-24-green?logo=node.js)](package.json)
