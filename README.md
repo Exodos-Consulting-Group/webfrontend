@@ -1,9 +1,6 @@
 # Exodos Web Frontend
 
-[![Test & Quality Checks](https://img.shields.io/github/actions/workflow/status/Exodos-Consulting-Group/webfrontend/ci-cd.yml?label=tests&logo=github)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
-[![Docker Build](https://img.shields.io/github/actions/workflow/status/Exodos-Consulting-Group/webfrontend/ci-cd.yml?label=build&logo=docker)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
-[![Security Scan](https://img.shields.io/github/actions/workflow/status/Exodos-Consulting-Group/webfrontend/ci-cd.yml?label=security&logo=shield)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
-[![Integration Test](https://img.shields.io/github/actions/workflow/status/Exodos-Consulting-Group/webfrontend/ci-cd.yml?label=integration&logo=checkmark)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
+[![Test & Quality Checks](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
 [![License](https://img.shields.io/github/license/Exodos-Consulting-Group/webfrontend)](LICENSE)
 [![Next.js](https://img.shields.io/badge/next.js-15.3.4-black?logo=next.js)](package.json)
 [![Node.js Version](https://img.shields.io/badge/node.js-24-green?logo=node.js)](package.json)
@@ -65,8 +62,28 @@ NODE_ENV=development|production
 
 ## CI/CD
 
-GitHub Actions runs on push to `main`/`develop`:
-- Lint & type check
-- Build test
-- Security scan
-- Docker build & push 
+[![Pipeline Status](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
+
+GitHub Actions pipeline runs on push to `main`/`develop` with the following jobs:
+
+**🧪 Test & Quality Checks**
+- ESLint code linting
+- TypeScript type checking  
+- Production build test
+
+**🐳 Docker Build**
+- Multi-platform Docker image build (linux/amd64)
+- Push to Docker Hub registry
+- Build cache optimization
+
+**🛡️ Security Scan**
+- Trivy vulnerability scanning
+- Critical/High severity blocking
+- SARIF report generation
+
+**🔧 Integration Test**
+- Container startup validation
+- Health check endpoints
+- Application functionality tests
+
+Pipeline ensures code quality, security, and deployability before any release. 
