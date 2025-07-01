@@ -1,12 +1,10 @@
 # Exodos Web Frontend
 
-[![Tests](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml/badge.svg?job=test)](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml)
-[![Build](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml/badge.svg?job=build)](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml)
-[![Security Scan](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml/badge.svg?job=security-scan)](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml)
-[![Integration Test](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml/badge.svg?job=integration-test)](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml)
-[![Docker Image](https://img.shields.io/docker/v/andrewpark93/exodos-frontend?label=docker&logo=docker)](https://hub.docker.com/r/andrewpark93/exodos-frontend)
-[![Docker Pulls](https://img.shields.io/docker/pulls/andrewpark93/exodos-frontend?logo=docker)](https://hub.docker.com/r/andrewpark93/exodos-frontend)
-[![License](https://img.shields.io/github/license/anpark/webfrontend)](LICENSE)
+[![Tests](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml/badge.svg?job=test)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
+[![Build](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml/badge.svg?job=build)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
+[![Security Scan](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml/badge.svg?job=security-scan)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
+[![Integration Test](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml/badge.svg?job=integration-test)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
+[![License](https://img.shields.io/github/license/Exodos-Consulting-Group/webfrontend)](LICENSE)
 [![Next.js](https://img.shields.io/badge/next.js-15.3.4-black?logo=next.js)](package.json)
 [![Node.js Version](https://img.shields.io/badge/node.js-24-green?logo=node.js)](package.json)
 [![TypeScript](https://img.shields.io/badge/typescript-5-blue?logo=typescript)](package.json)
