@@ -1,7 +1,7 @@
 # Exodos Web Frontend
 
 [![Test & Quality Checks](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Exodos-Consulting-Group/webfrontend/actions/workflows/ci-cd.yml)
-[![License](https://img.shields.io/github/license/Exodos-Consulting-Group/webfrontend)](LICENSE)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Next.js](https://img.shields.io/badge/next.js-15.3.4-black?logo=next.js)](package.json)
 [![Node.js Version](https://img.shields.io/badge/node.js-24-green?logo=node.js)](package.json)
 [![TypeScript](https://img.shields.io/badge/typescript-5-blue?logo=typescript)](package.json)
