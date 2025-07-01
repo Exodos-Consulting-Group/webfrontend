@@ -1,6 +1,9 @@
 # Exodos Web Frontend
 
-[![CI/CD Pipeline](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml)
+[![Tests](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml/badge.svg?job=test)](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml)
+[![Build](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml/badge.svg?job=build)](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml)
+[![Security Scan](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml/badge.svg?job=security-scan)](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml)
+[![Integration Test](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml/badge.svg?job=integration-test)](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml)
 [![Docker Image](https://img.shields.io/docker/v/andrewpark93/exodos-frontend?label=docker&logo=docker)](https://hub.docker.com/r/andrewpark93/exodos-frontend)
 [![Docker Pulls](https://img.shields.io/docker/pulls/andrewpark93/exodos-frontend?logo=docker)](https://hub.docker.com/r/andrewpark93/exodos-frontend)
 [![License](https://img.shields.io/github/license/anpark/webfrontend)](LICENSE)
