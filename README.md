@@ -1,5 +1,13 @@
 # Exodos Web Frontend
 
+[![CI/CD Pipeline](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/anpark/webfrontend/actions/workflows/ci-cd.yml)
+[![Docker Image](https://img.shields.io/docker/v/andrewpark93/exodos-frontend?label=docker&logo=docker)](https://hub.docker.com/r/andrewpark93/exodos-frontend)
+[![Docker Pulls](https://img.shields.io/docker/pulls/andrewpark93/exodos-frontend?logo=docker)](https://hub.docker.com/r/andrewpark93/exodos-frontend)
+[![License](https://img.shields.io/github/license/anpark/webfrontend)](LICENSE)
+[![Next.js](https://img.shields.io/badge/next.js-15.3.4-black?logo=next.js)](package.json)
+[![Node.js Version](https://img.shields.io/badge/node.js-24-green?logo=node.js)](package.json)
+[![TypeScript](https://img.shields.io/badge/typescript-5-blue?logo=typescript)](package.json)
+
 Internal repo for the Exodos website - Next.js 15 + TypeScript + PostgreSQL
 
 ## Quick Start
