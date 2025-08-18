@@ -1,0 +1,17 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/contact/route": "app/api/contact/route.js",
+  "/page": "app/page.js",
+  "/about/page": "app/about/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/blog/page": "app/blog/page.js",
+  "/services/page": "app/services/page.js",
+  "/services/application-modernization/page": "app/services/application-modernization/page.js",
+  "/services/consulting/page": "app/services/consulting/page.js",
+  "/services/cloud-migration/page": "app/services/cloud-migration/page.js",
+  "/services/web-development/page": "app/services/web-development/page.js",
+  "/team/page": "app/team/page.js",
+  "/team/curtis-rissi/page": "app/team/curtis-rissi/page.js",
+  "/team/andrew-park/page": "app/team/andrew-park/page.js",
+  "/team/young-jeong/page": "app/team/young-jeong/page.js"
+}
